@@ -25,20 +25,35 @@ class HashMap {
     set(key, value) {
         let hashCode = this.hash(key);
         // Update the key's value if same key
+
         if (this._buckets[hashCode] instanceof LinkedList) {
             if (this._buckets[hashCode].contains(key)) {
-            let temp = this._buckets[hashCode]._at(
-                this._buckets[hashCode]._findIndex(key),
-            );
-            temp.value = value;
-        } else {
-
-            this._buckets[hashCode].append([key, value]);
-        }
+                let temp = this._buckets[hashCode]._at(
+                    this._buckets[hashCode]._findIndex(key),
+                );
+                temp.value = value; // update value
+            } else {
+                if (this.length() + 1 > this._capacity * this._loadFactor) {
+                    this.resize();
+                    return this.set(key, value);
+                }
+                this._buckets[hashCode].append([key, value]); // if it is a different key
+            }
         } else if (this._buckets[hashCode].length === 0) {
+            if (this.length() + 1 > this._capacity * this._loadFactor) {
+                    this.resize();
+                    return this.set(key, value);
+                }
+            //If this is a first key to be assigned
             this._buckets[hashCode] = new LinkedList();
             this._buckets[hashCode].append([key, value]);
-        } 
+        } else {
+            if (this.length() + 1 > this._capacity * this._loadFactor) {
+                this.resize();
+                return this.set(key, value);
+            }
+            this._buckets[hashCode].append([key, value]);
+        }
     }
 
     get(key) {
@@ -130,7 +145,7 @@ class HashMap {
         return everyValues;
     }
     entries() {
-        //returns an array that contains each key, value pair. 
+        //returns an array that contains each key, value pair.
         // Example: [[firstKey, firstValue], [secondKey, secondValue]]
         let everyPair = [];
         for (let bucket of this._buckets) {
@@ -142,7 +157,20 @@ class HashMap {
                 }
             }
         }
-        return everyPair
+        return everyPair;
+    }
+
+    resize() {
+        const prevHashMap = this.entries(); // copy array
+        this._capacity = this._capacity * 2;
+        this._buckets = [];
+        for (let i = 0; i < this._capacity; i++) {
+            this._buckets.push([]);
+        }
+
+        for (let property of prevHashMap) {
+            this.set(property[0], property[1]);
+        }
     }
 }
 
