@@ -106,13 +106,13 @@ class HashMap {
         for (let bucket of this._buckets) {
             if (bucket instanceof LinkedList) {
                 let temp = bucket._head;
-                while(temp !== null) {
-                    everyKeys.push(temp.key)
-                    temp = temp.next
+                while (temp !== null) {
+                    everyKeys.push(temp.key);
+                    temp = temp.next;
                 }
             }
         }
-        return everyKeys
+        return everyKeys;
     }
     values() {
         //returns an array containing all the keys inside the hash map.
@@ -120,13 +120,28 @@ class HashMap {
         for (let bucket of this._buckets) {
             if (bucket instanceof LinkedList) {
                 let temp = bucket._head;
-                while(temp !== null) {
-                    everyValues.push(temp.value)
-                    temp = temp.next
+                while (temp !== null) {
+                    everyValues.push(temp.value);
+                    temp = temp.next;
                 }
             }
         }
-        return everyValues
+        return everyValues;
+    }
+    entries() {
+        //returns an array that contains each key, value pair. 
+        // Example: [[firstKey, firstValue], [secondKey, secondValue]]
+        let everyPair = [];
+        for (let bucket of this._buckets) {
+            if (bucket instanceof LinkedList) {
+                let temp = bucket._head;
+                while (temp !== null) {
+                    everyPair.push([temp.key, temp.value]);
+                    temp = temp.next;
+                }
+            }
+        }
+        return everyPair
     }
 }
 

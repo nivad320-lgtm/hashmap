@@ -22,5 +22,6 @@ myHashMap.set('hello', 'blah')
 
 console.log(myHashMap.keys())
 console.log(myHashMap.values())
+console.log(myHashMap.entries())
 
 
