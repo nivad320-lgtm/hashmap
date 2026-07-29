@@ -20,8 +20,7 @@ console.log(myHashMap.remove('asfasdf'))
 console.log(myHashMap._buckets)
 myHashMap.set('hello', 'blah')
 
-console.log(myHashMap._buckets)
-console.log(myHashMap.length())
-console.log(myHashMap.clear())
-console.log(myHashMap._buckets)
+console.log(myHashMap.keys())
+console.log(myHashMap.values())
+
 

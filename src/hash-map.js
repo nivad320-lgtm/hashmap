@@ -25,11 +25,9 @@ class HashMap {
     set(key, value) {
         let hashCode = this.hash(key);
         // Update the key's value if same key
-        if (this._buckets[hashCode instanceof LinkedList]){
+        if (this._buckets[hashCode instanceof LinkedList]) {
             this._buckets[hashCode].append([key, value]);
-
-        }
-        else if (this._buckets[hashCode].length === 0) {
+        } else if (this._buckets[hashCode].length === 0) {
             this._buckets[hashCode] = new LinkedList();
             this._buckets[hashCode].append([key, value]);
         } else if (this._buckets[hashCode].contains(key)) {
@@ -59,7 +57,10 @@ class HashMap {
 
     has(key) {
         let hashCode = this.hash(key);
-        if (this._buckets[hashCode].length > 0 && this._buckets[hashCode].contains(key)) {
+        if (
+            this._buckets[hashCode].length > 0 &&
+            this._buckets[hashCode].contains(key)
+        ) {
             return true;
         }
         return false;
@@ -69,21 +70,24 @@ class HashMap {
         let hashCode = this.hash(key);
         if (this.has(key)) {
             if (this._buckets[hashCode].size() === 1) {
-                this._buckets[hashCode] = []
+                this._buckets[hashCode] = [];
             } else {
-                this._buckets[hashCode].removeAt(this._buckets[hashCode]._findIndex(key))
+                this._buckets[hashCode].removeAt(
+                    this._buckets[hashCode]._findIndex(key),
+                );
             }
-            return true
+            return true;
         }
-        return false
+        return false;
     }
 
-    length() { // returns the number of stored keys in the hash map.
+    length() {
+        // returns the number of stored keys in the hash map.
         // if bucket is an instance of linked list, do size
-        let numberOfKeys = 0
+        let numberOfKeys = 0;
         for (let bucket of this._buckets) {
-            if(bucket instanceof LinkedList) {
-                numberOfKeys += bucket.size()
+            if (bucket instanceof LinkedList) {
+                numberOfKeys += bucket.size();
             }
         }
         return numberOfKeys;
@@ -91,11 +95,39 @@ class HashMap {
 
     clear() {
         for (let i = 0; i < this._capacity; i++)
-        if (this._buckets[i]) {
-                this._buckets[i] = []
+            if (this._buckets[i]) {
+                this._buckets[i] = [];
+            }
     }
-}
-    
+
+    keys() {
+        //returns an array containing all the keys inside the hash map.
+        let everyKeys = [];
+        for (let bucket of this._buckets) {
+            if (bucket instanceof LinkedList) {
+                let temp = bucket._head;
+                while(temp !== null) {
+                    everyKeys.push(temp.key)
+                    temp = temp.next
+                }
+            }
+        }
+        return everyKeys
+    }
+    values() {
+        //returns an array containing all the keys inside the hash map.
+        let everyValues = [];
+        for (let bucket of this._buckets) {
+            if (bucket instanceof LinkedList) {
+                let temp = bucket._head;
+                while(temp !== null) {
+                    everyValues.push(temp.value)
+                    temp = temp.next
+                }
+            }
+        }
+        return everyValues
+    }
 }
 
 export default HashMap;
