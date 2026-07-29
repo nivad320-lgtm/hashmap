@@ -41,15 +41,24 @@ class HashMap {
     get(key) {
         let hashCode = this.hash(key);
         if (this._buckets[hashCode].length === 0) {
-            return null
+            return null;
         }
         if (this._buckets[hashCode].contains(key)) {
             return this._buckets[hashCode]._at(
                 this._buckets[hashCode]._findIndex(key),
             ).value;
-        } else { // NOTE: Can I refactor this line?
-            return null 
+        } else {
+            // NOTE: Can I refactor this line?
+            return null;
         }
+    }
+
+    has(key) {
+        let hashCode = this.hash(key);
+        if (this._buckets.length > 0 && this._buckets[hashCode].contains(key)) {
+            return true;
+        }
+        return false;
     }
 }
 

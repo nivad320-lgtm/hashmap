@@ -13,5 +13,5 @@ myHashMap.set('woohoo', 'blah')
 
 console.log(myHashMap._buckets)
 
-console.log(myHashMap.get('asdf')
-)
+console.log(myHashMap.get('asdf'))
+console.log(myHashMap.has('asfsadfsad'))
