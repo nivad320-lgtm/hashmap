@@ -1,7 +1,13 @@
+import LinkedList from "./linked-list.js";
+
 class HashMap {
     constructor(){
         this._loadFactor = 0.75;
         this._capacity = 16;
+        this._buckets = [];
+        for (let i = 0; i < this._capacity; i++) {
+            this._buckets.push([]);
+        }
     }
 
     hash(key) {
@@ -14,6 +20,18 @@ class HashMap {
         }
 
         return hashCode;
+    }
+
+    set(key, value) {
+        let hashCode = this.hash(key);
+        // Update the key's value if same key
+        if (this._buckets[hashCode].length===0) {
+
+            this._buckets[hashCode] = new LinkedList
+            this._buckets[hashCode].append([key, value])
+        } else {
+            this._buckets[hashCode].append([key, value])
+        }
     }
 
 }
