@@ -68,7 +68,7 @@ class LinkedList {
     }
     return temp.value;
   }
-  at(index) {
+  _at(index) {
     if (index === 0 && this._head !== null) {
       return this._head;
     }
@@ -89,13 +89,13 @@ class LinkedList {
     return temp;
   }
 
-  contains(value) {
+  contains(key) {
     if (this._head === null) {
       return false;
     }
     let temp = this._head;
     while (temp !== null) {
-      if (temp.value === value) {
+      if (temp.key === key) {
         return true;
       }
       temp = temp.next;
@@ -103,11 +103,11 @@ class LinkedList {
 
     return false;
   }
-  _findIndex(value) {
+  _findIndex(key) {
     let temp = this._head;
     let index = 0;
     while (temp !== null) {
-      if (temp.value === value) {
+      if (temp.key === key) {
         return index;
       }
       temp = temp.next;

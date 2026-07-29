@@ -29,7 +29,11 @@ class HashMap {
 
             this._buckets[hashCode] = new LinkedList
             this._buckets[hashCode].append([key, value])
-        } else {
+        } else if (this._buckets[hashCode].contains(key)) {
+            let temp = this._buckets[hashCode]._at(this._buckets[hashCode]._findIndex(key));
+            temp.value = value;
+        } 
+        else {
             this._buckets[hashCode].append([key, value])
         }
     }
