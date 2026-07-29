@@ -25,7 +25,11 @@ class HashMap {
     set(key, value) {
         let hashCode = this.hash(key);
         // Update the key's value if same key
-        if (this._buckets[hashCode].length === 0) {
+        if (this._buckets[hashCode instanceof LinkedList]){
+            this._buckets[hashCode].append([key, value]);
+
+        }
+        else if (this._buckets[hashCode].length === 0) {
             this._buckets[hashCode] = new LinkedList();
             this._buckets[hashCode].append([key, value]);
         } else if (this._buckets[hashCode].contains(key)) {
@@ -55,11 +59,26 @@ class HashMap {
 
     has(key) {
         let hashCode = this.hash(key);
-        if (this._buckets.length > 0 && this._buckets[hashCode].contains(key)) {
+        if (this._buckets[hashCode].length > 0 && this._buckets[hashCode].contains(key)) {
             return true;
         }
         return false;
     }
+
+    remove(key) {
+        let hashCode = this.hash(key);
+        if (this.has(key)) {
+            if (this._buckets[hashCode].size() === 1) {
+                this._buckets[hashCode] = []
+            } else {
+                this._buckets[hashCode].removeAt(this._buckets[hashCode]._findIndex(key))
+            }
+            return true
+        }
+        return false
+    }
+
+    
 }
 
 export default HashMap;

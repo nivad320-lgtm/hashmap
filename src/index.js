@@ -14,4 +14,10 @@ myHashMap.set('woohoo', 'blah')
 console.log(myHashMap._buckets)
 
 console.log(myHashMap.get('asdf'))
-console.log(myHashMap.has('asfsadfsad'))
+console.log(myHashMap._buckets)
+
+console.log(myHashMap.remove('asfasdf'))
+console.log(myHashMap._buckets)
+myHashMap.set('hello', 'blah')
+
+console.log(myHashMap._buckets)

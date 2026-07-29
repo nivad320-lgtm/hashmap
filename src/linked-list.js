@@ -168,12 +168,15 @@ class LinkedList {
     if (index < 0 || index > this.size()) {
       throw RangeError;
     }
-    if (index === 0) {
-        this._head = this.at(index+1)
-    } else {
+    if (index === 0 && this._at(0).next !== null) {
+        this._head = this._at(index+1)
+    } else if (index === 0 && this._at(0).next === null) {
+      this._head = undefined;
+    }
+    else {
         this.at(index);
-        let temp = this.at(index-1);
-        temp.next = this.at(index+1);
+        let temp = this._at(index-1);
+        temp.next = this._at(index+1);
 
     }
   }
