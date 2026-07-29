@@ -21,3 +21,4 @@ console.log(myHashMap._buckets)
 myHashMap.set('hello', 'blah')
 
 console.log(myHashMap._buckets)
+console.log(myHashMap.length())

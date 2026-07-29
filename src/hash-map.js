@@ -78,6 +78,16 @@ class HashMap {
         return false
     }
 
+    length() { // returns the number of stored keys in the hash map.
+        // if bucket is an instance of linked list, do size
+        let numberOfKeys = 0
+        for (let bucket of this._buckets) {
+            if(bucket instanceof LinkedList) {
+                numberOfKeys += bucket.size()
+            }
+        }
+        return numberOfKeys;
+    }
     
 }
 
