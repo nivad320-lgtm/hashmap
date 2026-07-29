@@ -88,6 +88,13 @@ class HashMap {
         }
         return numberOfKeys;
     }
+
+    clear() {
+        for (let i = 0; i < this._capacity; i++)
+        if (this._buckets[i]) {
+                this._buckets[i] = []
+    }
+}
     
 }
 
