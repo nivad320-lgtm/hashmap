@@ -1,7 +1,7 @@
 import LinkedList from "./linked-list.js";
 
 class HashMap {
-    constructor(){
+    constructor() {
         this._loadFactor = 0.75;
         this._capacity = 16;
         this._buckets = [];
@@ -25,19 +25,32 @@ class HashMap {
     set(key, value) {
         let hashCode = this.hash(key);
         // Update the key's value if same key
-        if (this._buckets[hashCode].length===0) {
-
-            this._buckets[hashCode] = new LinkedList
-            this._buckets[hashCode].append([key, value])
+        if (this._buckets[hashCode].length === 0) {
+            this._buckets[hashCode] = new LinkedList();
+            this._buckets[hashCode].append([key, value]);
         } else if (this._buckets[hashCode].contains(key)) {
-            let temp = this._buckets[hashCode]._at(this._buckets[hashCode]._findIndex(key));
+            let temp = this._buckets[hashCode]._at(
+                this._buckets[hashCode]._findIndex(key),
+            );
             temp.value = value;
-        } 
-        else {
-            this._buckets[hashCode].append([key, value])
+        } else {
+            this._buckets[hashCode].append([key, value]);
         }
     }
 
+    get(key) {
+        let hashCode = this.hash(key);
+        if (this._buckets[hashCode].length === 0) {
+            return null
+        }
+        if (this._buckets[hashCode].contains(key)) {
+            return this._buckets[hashCode]._at(
+                this._buckets[hashCode]._findIndex(key),
+            ).value;
+        } else { // NOTE: Can I refactor this line?
+            return null 
+        }
+    }
 }
 
 export default HashMap;
