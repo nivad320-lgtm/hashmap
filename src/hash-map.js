@@ -25,19 +25,20 @@ class HashMap {
     set(key, value) {
         let hashCode = this.hash(key);
         // Update the key's value if same key
-        if (this._buckets[hashCode instanceof LinkedList]) {
-            this._buckets[hashCode].append([key, value]);
-        } else if (this._buckets[hashCode].length === 0) {
-            this._buckets[hashCode] = new LinkedList();
-            this._buckets[hashCode].append([key, value]);
-        } else if (this._buckets[hashCode].contains(key)) {
+        if (this._buckets[hashCode] instanceof LinkedList) {
+            if (this._buckets[hashCode].contains(key)) {
             let temp = this._buckets[hashCode]._at(
                 this._buckets[hashCode]._findIndex(key),
             );
             temp.value = value;
         } else {
+
             this._buckets[hashCode].append([key, value]);
         }
+        } else if (this._buckets[hashCode].length === 0) {
+            this._buckets[hashCode] = new LinkedList();
+            this._buckets[hashCode].append([key, value]);
+        } 
     }
 
     get(key) {

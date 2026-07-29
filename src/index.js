@@ -1,27 +1,23 @@
 import "./styles.css";
 import HashMap from "./hash-map.js";
 
-const myHashMap = new HashMap;
+const test = new HashMap() // or HashMap() if using a factory
+test.set('apple', 'red')
+test.set('banana', 'yellow')
+test.set('carrot', 'orange')
+test.set('dog', 'brown')
+test.set('elephant', 'gray')
+test.set('frog', 'green')
+test.set('grape', 'purple')
+test.set('hat', 'black')
+test.set('ice cream', 'white')
+test.set('jacket', 'blue')
+test.set('kite', 'pink')
+test.set('lion', 'golden')
 
-console.log(myHashMap._buckets)
-myHashMap.set('hello', 'davin')
-console.log(myHashMap._buckets)
+test.set('jacket', 'honey')
 
-myHashMap.set('hello', 'blah')
-myHashMap.set('woohoo', 'blah')
-
-
-console.log(myHashMap._buckets)
-
-console.log(myHashMap.get('asdf'))
-console.log(myHashMap._buckets)
-
-console.log(myHashMap.remove('asfasdf'))
-console.log(myHashMap._buckets)
-myHashMap.set('hello', 'blah')
-
-console.log(myHashMap.keys())
-console.log(myHashMap.values())
-console.log(myHashMap.entries())
+test.set('moon', 'silver')
 
 
+console.log(test._buckets) 
